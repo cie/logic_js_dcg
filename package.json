@@ -1,0 +1,25 @@
+{
+  "name": "logic_js-dcg",
+  "version": "1.0.0",
+  "description": "Definite Clause Grammars for logic.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tinymocha": "^1.0.1"
+  },
+  "dependencies": {
+    "logic_js": "0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cie/logic.js-dcg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cie/logic.js-dcg/issues"
+  },
+  "homepage": "https://github.com/cie/logic.js-dcg#readme"
+}
