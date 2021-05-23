@@ -26,7 +26,7 @@ run([x], sentence(x, []))
   // => [ { x: [ 'the', 'cat', 'chases', 'the', 'cat' ] }, { x: [ 'the', 'cat', 'chases', 'the', 'mouse' ] }... 
 ```
 
-If you want your productions to have arguments, or you need to declare local logic variables, turn them into functions. For conditions, no need for Prolog's `{}`, just use a logic value as it is:  
+If you want your productions to have arguments, or you need to declare local logic variables, turn them into functions. For conditions, no need for Prolog's `{}`, just use a clause as it is:  
 
 ```javascript
 import { run, lvar, eq } from "logic_js"
@@ -61,7 +61,7 @@ run([x], noun_phrase2()(x, []))
 ```
 
 
-Productions are two-argument functions returning a logic value, the two arguments are the difference lists just like in Prolog (but in Prolog the two arguments are appended to the explicit arguments, and here they are curried to a separate function call):
+Productions are two-argument functions returning a clause, the two arguments are the difference lists just like in Prolog (but in Prolog the two arguments are appended to the explicit arguments, and here they are curried to a separate function call):
 
 ```javascript
 const num = lvar('num')
@@ -73,12 +73,12 @@ So the different types you can pass into `phrase` or any argument of `and_` and 
 ```javascript
 // list of terminals
 and_(['a', 'cat'], /* ... */)
-// logic value
+// clause
 and_(eq(a, b), /* ... */)
 // production (possibly returned by a factory)
 and_(det, /* ... */)
 and_(det2('pl'), /* ... */)
-// nullary function returning a logic value, possibly with optional arguments
+// nullary function returning a clause value, possibly with optional arguments
 and_((x = lvar()) => eq(x, a), /* ... */)
 // nullary function returning a production, possibly with optional arguments
 and_((x = lvar()) => det2(x), /* ... */)
