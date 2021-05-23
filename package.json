@@ -1,7 +1,7 @@
 {
   "name": "logic_js-dcg",
   "version": "1.0.0",
-  "description": "Definite Clause Grammars for logic.js",
+  "description": "Definite clause grammars for logic.js",
   "main": "index.js",
   "scripts": {
     "test": "node ./test.js"
