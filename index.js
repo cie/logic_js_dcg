@@ -3,6 +3,7 @@ const { or, and, appendo, lvar, eq } = require('logic_js')
 function phrase(s) {
   if (Array.isArray(s)) return (l, l1) => appendo(s, l1, l)
   if (typeof s === 'function') {
+    if (s.length == 0) s = s()
     if (s.length == 1) return (l, l1) => and(s, eq(l, l1))
     if (s.length == 2) return s
   }

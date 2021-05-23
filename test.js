@@ -9,41 +9,12 @@ function check(vars, logic, expected) {
   assert.deepEqual(run(vars, logic), expected)
 }
 
+
 describe('logic.js-dcg', () => {
-  it('can be substituted with pure logic.js', () => {
-    const determinant = (l, l1, d = lvar()) => and(
-      or(eq(d, 'a'), eq(d, 'the')),
-      appendo([d], l1, l)
-    )
-    const noun = (x, l, l1) => and(
-      or(eq(x, 'cat'), eq(x, 'mouse')),
-      appendo([x], l1, l)
-    )
-    const NP = (x, l, l2, l1 = lvar()) => and(
-      determinant(l, l1),
-      noun(x, l1, l2)
-    )
-    const x = lvar('x'), rest = lvar('rest')
-    check(
-      [x, rest],
-      NP(x, ['a', 'cat'], rest),
-      [{x: 'cat', rest: []}]
-    )
-    const list = lvar('list')
-    check(
-      [x, list],
-      NP(x, list, []),
-      [
-        {x: 'cat', list: ['a', 'cat']},
-        {x: 'mouse', list: ['a', 'mouse']},
-        {x: 'cat', list: ['the', 'cat']},
-        {x: 'mouse', list: ['the', 'mouse']},
-      ]
-    )
-  })
   describe('phrase', () => {
     it('can parse constant terminals', () => {
       const the = phrase(['in', 'the'])
+      console.log(run([], the(['in', 'the'], [])))
       check([], the(['in', 'the'], []), [{}])
       check([], the(['in'], []), [])
       check([], the([], []), [])
@@ -58,6 +29,13 @@ describe('logic.js-dcg', () => {
     it('can take a logic value', () => {
       const empty = phrase(succeed())
       const never = phrase(fail())
+      const x = lvar('x')
+      check([x], empty(['the'], x), [{x: ['the']}])
+      check([x], never(['the'], x), [])
+    })
+    it('can take a nullary function', () => {
+      const empty = phrase(() => succeed())
+      const never = phrase(() => fail())
       const x = lvar('x')
       check([x], empty(['the'], x), [{x: ['the']}])
       check([x], never(['the'], x), [])
@@ -123,6 +101,37 @@ describe('logic.js-dcg', () => {
         {x: 'cat', list: ['the', 'cat']},
         {x: 'mouse', list: ['the', 'mouse']},
       ])
+  })
+  it('can be implemented with pure logic.js', () => {
+    const determinant = (l, l1, d = lvar()) => and(
+      or(eq(d, 'a'), eq(d, 'the')),
+      appendo([d], l1, l)
+    )
+    const noun = (x, l, l1) => and(
+      or(eq(x, 'cat'), eq(x, 'mouse')),
+      appendo([x], l1, l)
+    )
+    const NP = (x, l, l2, l1 = lvar()) => and(
+      determinant(l, l1),
+      noun(x, l1, l2)
+    )
+    const x = lvar('x'), rest = lvar('rest')
+    check(
+      [x, rest],
+      NP(x, ['a', 'cat'], rest),
+      [{x: 'cat', rest: []}]
+    )
+    const list = lvar('list')
+    check(
+      [x, list],
+      NP(x, list, []),
+      [
+        {x: 'cat', list: ['a', 'cat']},
+        {x: 'mouse', list: ['a', 'mouse']},
+        {x: 'cat', list: ['the', 'cat']},
+        {x: 'mouse', list: ['the', 'mouse']},
+      ]
+    )
   })
 })
 
