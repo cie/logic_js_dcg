@@ -1,5 +1,5 @@
 {
-  "name": "logic_js-dcg",
+  "name": "logic_js_dcg",
   "version": "1.0.0",
   "description": "Definite clause grammars for logic.js",
   "main": "index.js",
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cie/logic.js-dcg.git"
+    "url": "git+https://github.com/cie/logic_js_dcg.git"
   },
   "bugs": {
-    "url": "https://github.com/cie/logic.js-dcg/issues"
+    "url": "https://github.com/cie/logic_js_dcg/issues"
   },
-  "homepage": "https://github.com/cie/logic.js-dcg#readme"
+  "homepage": "https://github.com/cie/logic_js_dcg#readme"
 }
