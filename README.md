@@ -61,7 +61,7 @@ run([x], noun_phrase2()(x, []))
 ```
 
 
-Productions are two-argument functions returning a logic value, the two arguments are the difference list just like in Prolog (but in Prolog the two arguments are appended to the explicit arguments, and here they are curried to a separate function call)
+Productions are two-argument functions returning a logic value, the two arguments are the difference lists just like in Prolog (but in Prolog the two arguments are appended to the explicit arguments, and here they are curried to a separate function call):
 
 ```javascript
 const num = lvar('num')
